@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gustavo Muniz — Social Media & Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #F4F2EE;
+    --bg-card: #EDEAE4;
+    --ink: #111110;
+    --ink-muted: #6B6860;
+    --accent: #1A3C2E;
+    --accent-light: #D6E8DF;
+    --border: rgba(17,17,16,0.12);
+    --radius: 12px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem 2rem;
+    background: rgba(244,242,238,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--ink-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 2rem 5rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .hero-tag {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--ink-muted);
+  }
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(3.5rem, 10vw, 8rem);
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    margin-bottom: 2.5rem;
+  }
+  .hero-name span {
+    display: block;
+    color: var(--accent);
+  }
+  .hero-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .hero-desc {
+    max-width: 380px;
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--ink-muted);
+    line-height: 1.7;
+  }
+  .hero-desc strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.85rem 1.8rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.2s;
+    white-space: nowrap;
+  }
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-primary svg { width: 16px; height: 16px; }
+
+  /* SECTION BASE */
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+  }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 1px;
+    background: var(--ink-muted);
+  }
+
+  /* SERVIÇOS */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .service-card {
+    background: var(--bg);
+    padding: 2rem 1.75rem;
+    transition: background 0.2s;
+  }
+  .service-card:hover { background: var(--bg-card); }
+  .service-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--ink-muted);
+    letter-spacing: 0.08em;
+    margin-bottom: 1.5rem;
+  }
+  .service-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--accent-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+  }
+  .service-icon svg {
+    width: 18px;
+    height: 18px;
+    stroke: var(--accent);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .service-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+    line-height: 1.25;
+  }
+  .service-desc {
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+  .service-price {
+    margin-top: 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-light);
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    border-radius: 100px;
+  }
+
+  /* PROJETOS */
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .project-item {
+    background: var(--bg);
+    padding: 1.75rem 2rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+    transition: background 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .project-item:hover { background: var(--bg-card); }
+  .project-left { flex: 1; }
+  .project-tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 0.5rem;
+  }
+  .project-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .project-desc {
+    font-size: 0.875rem;
+    color: var(--ink-muted);
+    font-weight: 300;
+    max-width: 500px;
+  }
+  .project-year {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+    white-space: nowrap;
+    padding-top: 0.2rem;
+  }
+
+  /* SOBRE */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-heading {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .about-text {
+    font-size: 0.95rem;
+    font-weight: 300;
+    color: var(--ink-muted);
+    line-height: 1.75;
+    margin-bottom: 1rem;
+  }
+  .about-text strong { color: var(--ink); font-weight: 500; }
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+  .tag {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--ink);
+    border: 1px solid var(--border);
+    padding: 0.35rem 0.9rem;
+    border-radius: 100px;
+    background: var(--bg);
+  }
+  .about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    align-self: start;
+  }
+  .stat-box {
+    background: var(--bg);
+    padding: 1.75rem 1.5rem;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: var(--ink-muted);
+  }
+
+  /* CONTATO */
+  .contact-block {
+    background: var(--accent);
+    border-radius: 20px;
+    padding: 4rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .contact-heading {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: #fff;
+    line-height: 1.1;
+    max-width: 400px;
+  }
+  .contact-heading span { opacity: 0.5; }
+  .contact-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #fff;
+    color: var(--accent);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.85rem 1.8rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+  }
+  .btn-white:hover { opacity: 0.88; }
+  .btn-white svg { width: 16px; height: 16px; fill: currentColor; }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: transparent;
+    color: rgba(255,255,255,0.65);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 400;
+    padding: 0.75rem 1.6rem;
+    border-radius: 100px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+  /* FOOTER */
+  footer {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 2rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer p { font-size: 0.8rem; color: var(--ink-muted); font-weight: 300; }
+  footer a { color: var(--ink-muted); text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+
+  /* FADE IN */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* MOBILE */
+  @media (max-width: 680px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    .hero { padding: 0 1.25rem 4rem; }
+    section { padding: 4rem 1.25rem; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .contact-block { padding: 2.5rem 1.75rem; }
+    .contact-actions { flex-direction: row; flex-wrap: wrap; }
+    footer { padding: 2rem 1.25rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">GM</a>
+  <ul class="nav-links">
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#projetos">Projetos</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <p class="hero-tag">Social Media · Design · Vendas</p>
+  <h1 class="hero-name">
+    Gustavo<br>
+    <span>Muniz.</span>
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">
+      Criação de conteúdo, identidade visual e estratégia para negócios locais que querem crescer de verdade nas redes sociais. <strong>Baseado em Umuarama, PR.</strong>
+    </p>
+    <a href="https://wa.me/5544999410277?text=Oi%20Gustavo%2C%20quero%20conversar%20sobre%20social%20media" class="btn-primary" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+      Fale comigo
+    </a>
+  </div>
+</div>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <p class="section-label">O que eu faço</p>
+  <div class="services-grid fade-up">
+
+    <div class="service-card">
+      <p class="service-num">01</p>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <h3 class="service-title">Gestão de Redes Sociais</h3>
+      <p class="service-desc">Feed estratégico, stories diários, Reels e posicionamento do seu negócio no Instagram e WhatsApp Business.</p>
+      <span class="service-price">A partir de R$ 350/mês</span>
+    </div>
+
+    <div class="service-card">
+      <p class="service-num">02</p>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+      </div>
+      <h3 class="service-title">Identidade Visual</h3>
+      <p class="service-desc">Logo, paleta de cores, cardápio digital e peças gráficas que criam uma identidade memorável para o seu negócio.</p>
+      <span class="service-price">A partir de R$ 250</span>
+    </div>
+
+    <div class="service-card">
+      <p class="service-num">03</p>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3 class="service-title">Conteúdo que Vende</h3>
+      <p class="service-desc">Copywriting para posts, promoções, eventos e campanhas que convertem seguidores em clientes reais.</p>
+      <span class="service-price">Incluso nos pacotes</span>
+    </div>
+
+    <div class="service-card">
+      <p class="service-num">04</p>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+      </div>
+      <h3 class="service-title">Sites & Landing Pages</h3>
+      <p class="service-desc">Páginas rápidas, modernas e otimizadas para converter visitantes — perfeitas para divulgar no WhatsApp e Google.</p>
+      <span class="service-price">A partir de R$ 400</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJETOS -->
+<section id="projetos">
+  <p class="section-label">Experiência</p>
+  <div class="projects-list fade-up">
+
+    <div class="project-item">
+      <div class="project-left">
+        <p class="project-tag">Startup · Aceleração</p>
+        <h3 class="project-name">Welow</h3>
+        <p class="project-desc">Fundador e responsável pela gestão completa das redes sociais, branding e estratégia de comunicação da startup. Empresa atualmente em programa de aceleração.</p>
+      </div>
+      <p class="project-year">2025 – atual</p>
+    </div>
+
+    <div class="project-item">
+      <div class="project-left">
+        <p class="project-tag">E-commerce · Gestão de Marca</p>
+        <h3 class="project-name">Dropshipping — Loja Virtual</h3>
+        <p class="project-desc">Operação de loja virtual com gestão de redes sociais, criação de anúncios e identidade visual da marca própria do negócio.</p>
+      </div>
+      <p class="project-year">2024 – 2025</p>
+    </div>
+
+    <div class="project-item">
+      <div class="project-left">
+        <p class="project-tag">Social Media · Cliente Externo</p>
+        <h3 class="project-name">Gestão de Redes para Empresa Local</h3>
+        <p class="project-desc">Produção de conteúdo, planejamento de feed, stories e relacionamento com seguidores para empresa de Umuarama (encerrou atividades).</p>
+      </div>
+      <p class="project-year">2023 – 2024</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <p class="section-label">Sobre</p>
+  <div class="about-grid fade-up">
+    <div>
+      <h2 class="about-heading">Empreendedor antes de profissional.</h2>
+      <p class="about-text">Sou de Umuarama, PR. Comecei gerindo as redes da minha própria empresa antes de atender clientes externos — o que significa que entendo o lado de quem tem negócio, não só o de quem posta.</p>
+      <p class="about-text">Trabalho com <strong>design, conteúdo e estratégia de vendas</strong> para negócios locais que querem presença digital de verdade, não só "postar por postar".</p>
+      <p class="about-text">Atualmente em programa de <strong>aceleração de startups</strong> e ingressando em Administração de Empresas na PIB The New College, São Paulo.</p>
+      <div class="about-tags">
+        <span class="tag">Social Media</span>
+        <span class="tag">Design Visual</span>
+        <span class="tag">Vendas</span>
+        <span class="tag">Empreendedorismo</span>
+        <span class="tag">Canva Pro</span>
+        <span class="tag">Meta Ads</span>
+        <span class="tag">Copywriting</span>
+      </div>
+    </div>
+    <div class="about-stats">
+      <div class="stat-box">
+        <p class="stat-num">3+</p>
+        <p class="stat-label">anos gerindo redes sociais</p>
+      </div>
+      <div class="stat-box">
+        <p class="stat-num">2</p>
+        <p class="stat-label">negócios próprios operados</p>
+      </div>
+      <div class="stat-box">
+        <p class="stat-num">100%</p>
+        <p class="stat-label">bolsa na PIB SP</p>
+      </div>
+      <div class="stat-box">
+        <p class="stat-num">UMU</p>
+        <p class="stat-label">baseado em Umuarama, PR</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="contact-block fade-up">
+    <h2 class="contact-heading">Vamos fazer seu negócio crescer<span> nas redes?</span></h2>
+    <div class="contact-actions">
+      <a href="https://wa.me/5544999410277?text=Oi%20Gustavo%2C%20quero%20conversar%20sobre%20social%20media" class="btn-white" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.999 2c-5.514 0-9.999 4.486-9.999 10 0 1.762.463 3.413 1.268 4.852L2 22l5.236-1.246A9.958 9.958 0 0 0 12 22c5.514 0 10-4.486 10-10S17.513 2 11.999 2z"/></svg>
+        WhatsApp
+      </a>
+      <a href="mailto:munizdefreitasgustavo@gmail.com" class="btn-ghost">munizdefreitasgustavo@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Gustavo Muniz</p>
+  <p>Umuarama, PR — <a href="#servicos">Ver serviços</a></p>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
